@@ -1,9 +1,9 @@
 package hu.gde.racetracker;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.time.LocalTime;
+import java.util.Set;
 
 @Entity
 public class RaceEntity {
@@ -12,9 +12,21 @@ public class RaceEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long raceId;
 
+    @ManyToMany
+    @JoinTable(
+            name = "race_runner",
+            joinColumns = @JoinColumn(name = "race_id"),
+            inverseJoinColumns = @JoinColumn(name = "runner_id")
+    )
+    private Set<RunnerEntity> raceRunners;
+
     private String raceName;
 
     private Long length;
+
+    private LocalTime avrgTime;
+
+    public LocalTime getAvrgTime(){return avrgTime;}
 
     public Long getRaceId(){return raceId;}
 
@@ -28,5 +40,7 @@ public class RaceEntity {
 
     public void setRaceName(String raceName){this.raceName = raceName;}
 
+    public Set<RunnerEntity> getRaceRunners(){return raceRunners;}
 
+    public void setRaceRunners(Set<RunnerEntity> raceRunners){this.raceRunners = raceRunners;}
 }

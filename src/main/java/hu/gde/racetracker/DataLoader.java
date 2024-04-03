@@ -36,10 +36,16 @@ public class DataLoader implements CommandLineRunner {
         runnerRepository.save(runner3);
 
         RaceEntity race1 = new RaceEntity();
-        race1.setRaceName("1km Charity Run - Save The Trees");
+        race1.setRaceName("Charity Run - Save The Trees");
         race1.setRaceId(23445455L);
         race1.setLength(5L);
         raceRepository.save(race1);
+
+        RaceEntity race2 = new RaceEntity();
+        race2.setRaceName("Windmill Academy Junior Competition");
+        race2.setRaceId(23445455L);
+        race2.setLength(1L);
+        raceRepository.save(race2);
 
     }
 }

@@ -19,18 +19,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="name : ${races}">
-            <td th:text="${race.raceId}"></td>
-            <td th:text="${race.raceName}"></td>
-            <td th:text="${race.raceLength}"></td>
-            <td th:text="${runner.avrgTime}"></td>
+        <tr th:each="races : ${races}">
+            <td th:text="${races.raceId}"></td>
+            <td th:text="${races.raceName}"></td>
+            <td th:text="${races.length}"></td>
+            <td th:text="${races.avrgTime}"></td>
 
         </tr>
         </tbody>
     </table>
 
     <!-- Back Button -->
-    <a href="/index" class="btn btn-info">Home</a>
+    <a href="/index" class="btn btn-primary">Home</a>
 </div>
 </body>
 </html>

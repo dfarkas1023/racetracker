@@ -1,9 +1,11 @@
 package hu.gde.racetracker;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.Set;
+
+
 
 @Entity
 public class RunnerEntity {
@@ -12,6 +14,9 @@ public class RunnerEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long runnerId;
 
+    @ManyToMany(mappedBy = "raceRunners")
+    @JsonIgnore
+    private Set<RaceEntity> raceRunners;
     private String runnerName;
 
     private Long runnerAge;
@@ -45,6 +50,10 @@ public class RunnerEntity {
     public void setRunnerGender(Gender runnerGender) {
         this.runnerGender = runnerGender;
     }
+
+    public Set<RaceEntity> getRaceRunners(){return raceRunners;}
+
+    public void setRaceRunners(Set<RaceEntity> raceRunners){this.raceRunners = raceRunners;}
 }
 
 enum Gender {

@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="name : ${runners}">
+        <tr th:each="runner : ${runners}">
             <td th:text="${runner.runnerName}"></td>
             <td th:text="${runner.runnerAge}"></td>
             <td th:text="${runner.runnerGender}"></td>
@@ -28,7 +28,7 @@
     </table>
 
     <!-- Back Button -->
-    <a href="/index" class="btn btn-info">Home</a>
+    <a href="/index" class="btn btn-primary">Home</a>
 </div>
 </body>
 </html>
