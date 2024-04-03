@@ -25,7 +25,7 @@ public class RacetrackerFrontendController {
     }
 
     @PostMapping("/addRunner")
-    public String addRunner(@RequestParam("name") String name,@RequestParam("Age") Long age,@RequestParam("gender") Gender gender){
+    public String addRunner(@RequestParam("name") String name,@RequestParam("age") Long age,@RequestParam("gender") Gender gender){
         RunnerEntity newRunner = new RunnerEntity();
         newRunner.setRunnerName(name);
         newRunner.setRunnerAge(age);
