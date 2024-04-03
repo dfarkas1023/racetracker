@@ -3,25 +3,27 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <meta charset="UTF-8">
-    <title>Runners</title>
+    <title>Title</title>
 </head>
 <body>
 <div class="container">
-    <h1>Runners</h1>
+    <h1>Races</h1>
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
-            <th>Age</th>
-            <th>Gender</th>
+            <th>Length(km)</th>
+            <th>Average Time</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="name : ${runners}">
-            <td th:text="${runner.runnerName}"></td>
-            <td th:text="${runner.runnerAge}"></td>
-            <td th:text="${runner.runnerGender}"></td>
+        <tr th:each="name : ${races}">
+            <td th:text="${race.raceId}"></td>
+            <td th:text="${race.raceName}"></td>
+            <td th:text="${race.raceLength}"></td>
+            <td th:text="${runner.avrgTime}"></td>
 
         </tr>
         </tbody>

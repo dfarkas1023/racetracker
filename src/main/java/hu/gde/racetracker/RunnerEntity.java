@@ -33,4 +33,22 @@ public class RunnerEntity {
     public Long getTime() {return time;}
 
     public void setTime(Long time){this.time = time;}
+
+    private Gender runnerGender; // Change the type to Gender
+
+    // Getters and setters for runnerId, runnerName, and runnerAge
+
+    public Gender getRunnerGender() {
+        return runnerGender;
+    }
+
+    public void setRunnerGender(Gender runnerGender) {
+        this.runnerGender = runnerGender;
+    }
+}
+
+enum Gender {
+    MALE,
+    FEMALE,
+    OTHER
 }

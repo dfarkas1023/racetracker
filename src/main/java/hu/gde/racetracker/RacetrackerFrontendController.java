@@ -25,12 +25,20 @@ public class RacetrackerFrontendController {
     }
 
     @PostMapping("/addRunner")
-    public String addRunner(@RequestParam("name") String name,@RequestParam("Age") Long age) {
+    public String addRunner(@RequestParam("name") String name,@RequestParam("Age") Long age,@RequestParam("gender") Gender gender){
         RunnerEntity newRunner = new RunnerEntity();
         newRunner.setRunnerName(name);
         newRunner.setRunnerAge(age);
+        newRunner.setRunnerGender(gender);
         runnerRepository.save(newRunner);
         return "redirect:/runners";
+    }
+
+    @GetMapping("/races")
+    public String getRaces(Model model){
+        List<RaceEntity> races = raceRepository.findAll();
+        model.addAttribute("races",races);
+        return "races";
     }
 
 }
