@@ -26,12 +26,21 @@ public class RacetrackerFrontendController {
 
     @PostMapping("/addRunner")
     public String addRunner(@RequestParam("name") String name,@RequestParam("age") Long age,@RequestParam("gender") Gender gender){
-        RunnerEntity newRunner = new RunnerEntity();
-        newRunner.setRunnerName(name);
-        newRunner.setRunnerAge(age);
-        newRunner.setRunnerGender(gender);
-        runnerRepository.save(newRunner);
+        RunnerEntity runner = new RunnerEntity();
+        runner.setRunnerName(name);
+        runner.setRunnerAge(age);
+        runner.setRunnerGender(gender);
+        runnerRepository.save(runner);
         return "redirect:/runners";
+    }
+
+    @PostMapping("/newRace")
+    public String newRace(@RequestParam("name") String name,@RequestParam("length") Long length){
+        RaceEntity race = new RaceEntity();
+        race.setRaceName(name);
+        race.setLength(length);
+        raceRepository.save(race);
+        return "redirect:/races";
     }
 
     @GetMapping("/races")

@@ -11,14 +11,42 @@
     <hr>
     <p>On this webpage you'll be able to track both races and competitors, check race results and register yourself. </p>
     <hr>
-    <p>
 
-    </p>
-    <a href="/addRunner" class="btn btn-primary">Add Runner</a>
-    <a href="/runners" class="btn btn-primary">View Runners</a>
-    <a href="/races" class="btn btn-primary">View Races</a>
+    <div class="btn-container">
+        <a href="/newRunner" class="btn btn-primary">Add Runner</a>
+        <a href="/runners" class="btn btn-primary">View Runners</a>
+        <a href="/races" class="btn btn-primary">View Races</a>
+    </div>
+
 
 
 </div>
 </body>
 </html>
+
+<style>
+    body {
+        margin:0;
+        min-height: 100vh;
+        display: flex;
+        align-content: center;
+        background: linear-gradient(to bottom, #ff4343, #ff8e50);
+    }
+
+    .container{
+        width: 80%;
+        margin: 10px;
+        justify-content: center;
+        align-content: center;
+    }
+    h1 {
+        color: #230909;
+        font-size: 24px;
+    }
+
+    .btn{
+        background: #230909;
+        border: none;
+        outline: none;
+    }
+</style>

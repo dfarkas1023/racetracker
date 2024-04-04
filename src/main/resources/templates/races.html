@@ -19,18 +19,98 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="races : ${races}">
-            <td th:text="${races.raceId}"></td>
-            <td th:text="${races.raceName}"></td>
-            <td th:text="${races.length}"></td>
-            <td th:text="${races.avrgTime}"></td>
+        <tr th:each="race : ${races}">
+            <td th:text="${race.raceId}"></td>
+            <td th:text="${race.raceName}"></td>
+            <td th:text="${race.length}"></td>
+            <td th:text="${race.avrgTime}"></td>
 
         </tr>
         </tbody>
     </table>
 
-    <!-- Back Button -->
-    <a href="http://localhost:8082" class="btn btn-primary">Return Home</a>
+    <form action="/newRace" method="post">
+        <div class="form-group">
+            <label for="raceName">Race name:</label>
+            <input type="text" class="form-control" id="raceName" name="name" placeholder="Enter race name">
+        <label for="raceLength">Race length:</label>
+            <input type="number" class="form-control" id="raceLength" name="length" placeholder="Enter race length">
+        </div>
+        <button id="new-race-btn" type="submit" class="btn btn-success">New Race</button>
+        <a id="home-btn" href="http://localhost:8082" class="btn btn-primary">Return Home</a>
+
+    </form>
+
 </div>
 </body>
 </html>
+
+
+<style>
+    body {
+        margin:0;
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        align-content: center;
+        background: linear-gradient(to bottom, #ff4343, #ff8e50);
+    }
+
+    table{
+        background-color: rgba(52, 0, 0, 0.2);
+        border-radius: 5px;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .container{
+        width: 80%;
+        margin: 10px;
+        justify-content: center;
+        align-content: center;
+    }
+    h1 {
+        color: #230909;
+        font-size: 24px;
+    }
+
+    thead th {
+        border-bottom: 2px solid #380000; /* Style the bottom border of table head cells */
+    }
+
+    tbody tr:first-child {
+        border-top: 2px solid #380000; /* Style the top border of the first row in the table body */
+    }
+
+
+    tbody tr {
+        border-bottom: 2px solid #380000;
+        border-top: 2px solid #380000;
+    }
+
+    #home-btn{
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    #home-btn:hover{
+        background-color: white;
+        color: black;
+    }
+
+    #new-race-btn{
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    #new-race-btn:hover{
+        background-color: white;
+        color: black;
+    }
+
+    .btn{
+        background: #230909;
+        border: none;
+        outline: none;
+    }
+</style>

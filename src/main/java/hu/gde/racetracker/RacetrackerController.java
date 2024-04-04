@@ -24,6 +24,8 @@ public class RacetrackerController {
     @PostMapping("/addRunner")
     public RunnerEntity addRunner(@RequestBody RunnerEntity runner) {return runnerRepository.save(runner);}
 
+    @PostMapping("/newRace")
+    public RaceEntity newRace(@RequestBody RaceEntity race) {return raceRepository.save(race);}
 
     @GetMapping("/getRaceRunners/{ID}")
     public List<RunnerEntity> getRaceRunners(@PathVariable Long id){

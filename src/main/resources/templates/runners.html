@@ -11,6 +11,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Age</th>
             <th>Gender</th>
@@ -19,6 +20,7 @@
         </thead>
         <tbody>
         <tr th:each="runner : ${runners}">
+            <td th:text="${runner.runnerId}"></td>
             <td th:text="${runner.runnerName}"></td>
             <td th:text="${runner.runnerAge}"></td>
             <td th:text="${runner.runnerGender}"></td>
@@ -27,8 +29,50 @@
         </tbody>
     </table>
 
-    <!-- Back Button -->
+    <form action="/addRunner" method="post">
+        <label for="runnerName">Name:</label>
+        <input type="text" id="runnerName" name="name" required>
+        <br>
+        <label for="runnerAge">Age:</label>
+        <input type="number" id="runnerAge" name="age" required>
+        <br>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+            <option value="OTHER">Other</option>
+        </select>
+        <br>
+        <button type="submit" class="btn btn-success">Submit</button>
     <a href="http://localhost:8082" class="btn btn-primary">Return Home</a>
 </div>
 </body>
 </html>
+
+
+<style>
+    body {
+        margin:0;
+        min-height: 100vh;
+        display: flex;
+        align-content: center;
+        background: linear-gradient(to bottom, #ff4343, #ff8e50);
+    }
+
+    .container{
+        width: 80%;
+        margin: 10px;
+        justify-content: center;
+        align-content: center;
+    }
+    h1 {
+        color: #230909;
+        font-size: 24px;
+    }
+
+    .btn{
+        background: #230909;
+        border: none;
+        outline: none;
+    }
+</style>
