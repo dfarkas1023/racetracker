@@ -16,6 +16,9 @@ public class RacetrackerController {
     @Autowired
     private RaceRepository raceRepository;
 
+    @Autowired
+    private ResultRepository resultRepository;
+
     @GetMapping("/getRunners")
     public List<RunnerEntity> getRunners(){return runnerRepository.findAll();}
 
@@ -23,6 +26,9 @@ public class RacetrackerController {
     public List<RaceEntity> getRaces(){return raceRepository.findAll();}
     @PostMapping("/addRunner")
     public RunnerEntity addRunner(@RequestBody RunnerEntity runner) {return runnerRepository.save(runner);}
+
+    @PostMapping("/addResult")
+    public ResultEntity addResult(@RequestBody ResultEntity result) {return  resultRepository.save(result);}
 
     @PostMapping("/newRace")
     public RaceEntity newRace(@RequestBody RaceEntity race) {return raceRepository.save(race);}

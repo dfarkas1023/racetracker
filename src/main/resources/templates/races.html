@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Races</title>
 </head>
 <body>
 <div class="container">
@@ -24,6 +24,8 @@
             <td th:text="${race.raceName}"></td>
             <td th:text="${race.length}"></td>
             <td th:text="${race.avrgTime}"></td>
+            <td> <a id="race-details-btn" href="/raceDetails" class="btn btn-primary" aria-placeholder="View Details">View Details</a>
+            </td>
 
         </tr>
         </tbody>

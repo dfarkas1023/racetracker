@@ -14,6 +14,9 @@ public class RunnerEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long runnerId;
 
+    @OneToOne(mappedBy = "runner", cascade = CascadeType.ALL)
+    private ResultEntity result;
+
     @ManyToMany(mappedBy = "raceRunners")
     @JsonIgnore
     private Set<RaceEntity> raceRunners;
@@ -21,7 +24,7 @@ public class RunnerEntity {
 
     private Long runnerAge;
 
-    private Long time;
+    private Long finishTime;
 
     public Long getRunnerId(){return runnerId;}
 
@@ -35,9 +38,13 @@ public class RunnerEntity {
 
     public void setRunnerAge(Long runnerAge){this.runnerAge = runnerAge;}
 
-    public Long getTime() {return time;}
+    public Long getFinishTime() {
+        return finishTime;
+    }
 
-    public void setTime(Long time){this.time = time;}
+    public void setFinishTime(Long finishTime) {
+        this.finishTime = finishTime;
+    }
 
     private Gender runnerGender; // Change the type to Gender
 
@@ -54,6 +61,9 @@ public class RunnerEntity {
     public Set<RaceEntity> getRaceRunners(){return raceRunners;}
 
     public void setRaceRunners(Set<RaceEntity> raceRunners){this.raceRunners = raceRunners;}
+
+    public void setRunner(RunnerEntity runner) {
+    }
 }
 
 enum Gender {

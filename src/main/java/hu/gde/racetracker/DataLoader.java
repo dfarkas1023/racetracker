@@ -14,24 +14,30 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     private RaceRepository raceRepository;
 
+    @Autowired
+    private ResultRepository resultRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
         RunnerEntity runner1 = new RunnerEntity();
         runner1.setRunnerName("Jim");
         runner1.setRunnerAge(33L);
+        runner1.setFinishTime(98L);
         runner1.setRunnerGender(Gender.MALE);
         runnerRepository.save(runner1);
 
         RunnerEntity runner2 = new RunnerEntity();
         runner2.setRunnerName("Alma");
         runner2.setRunnerAge(19L);
+        runner2.setFinishTime(110L);
         runner2.setRunnerGender(Gender.FEMALE);
         runnerRepository.save(runner2);
 
         RunnerEntity runner3 = new RunnerEntity();
         runner3.setRunnerName("Riley");
         runner3.setRunnerAge(20L);
+        runner3.setFinishTime(132L);
         runner3.setRunnerGender(Gender.OTHER);
         runnerRepository.save(runner3);
 

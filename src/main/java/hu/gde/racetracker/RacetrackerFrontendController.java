@@ -16,6 +16,8 @@ public class RacetrackerFrontendController {
     private RaceRepository raceRepository;
     @Autowired
     private RunnerRepository runnerRepository;
+    @Autowired
+    private ResultRepository resultRepository;
 
     @GetMapping("/runners")
     public String getRunners(Model model){
@@ -25,12 +27,21 @@ public class RacetrackerFrontendController {
     }
 
     @PostMapping("/addRunner")
-    public String addRunner(@RequestParam("name") String name,@RequestParam("age") Long age,@RequestParam("gender") Gender gender){
+    public String addRunner(@RequestParam("name") String name,
+                            @RequestParam("age") Long age,
+                            @RequestParam("gender") Gender gender
+                            ){
         RunnerEntity runner = new RunnerEntity();
         runner.setRunnerName(name);
         runner.setRunnerAge(age);
         runner.setRunnerGender(gender);
+
+        long randomMinutes = (long) (Math.random() * (200 - 50)) + 40;
+        runner.setFinishTime(randomMinutes);
+
+        ResultEntity result = new ResultEntity(runner, randomMinutes);
         runnerRepository.save(runner);
+        resultRepository.save(result);
         return "redirect:/runners";
     }
 
