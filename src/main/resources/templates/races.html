@@ -24,7 +24,9 @@
             <td th:text="${race.raceName}"></td>
             <td th:text="${race.length}"></td>
             <td th:text="${race.avrgTime}"></td>
-            <td> <a id="race-details-btn" href="/raceDetails" class="btn btn-primary" aria-placeholder="View Details">View Details</a>
+
+            <td>
+                <button onclick="openRaceDetailsWindow('id')" class="btn btn-primary">View Details</button>
             </td>
 
         </tr>
@@ -44,6 +46,17 @@
     </form>
 
 </div>
+<script>
+    function openRaceDetailsWindow() {
+        console.log('Race ID:', raceId);
+        let url = "/raceDetails/" + raceId;
+        window.open(url, "_blank");
+
+    }
+
+
+
+</script>
 </body>
 </html>
 

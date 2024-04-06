@@ -13,21 +13,17 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Average Time</th>
-
+      <th>Finish Time</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="race : ${races}">
-      <td th:text="${race.raceId}"></td>
-      <td th:text="${race.raceName}"></td>
-      <td th:text="${race.length}"></td>
-      <td th:text="${race.avrgTime}"></td>
+    <tr th:each="runner : ${runners}">
+      <td th:text="${runner.runnerId}"></td>
+      <td th:text="${runner.runnerName}"></td>
+      <td th:text="${runner.finishTime}"></td>
+    </tr>
     </tbody>
   </table>
-
-   <a id="home-btn" href="http://localhost:8082" class="btn btn-primary">Return Home</a>
-
 </div>
 </body>
 </html>
@@ -62,7 +58,7 @@
   }
 
   thead th {
-    border-bottom: 2px solid #380000; /* Style the bottom border of table head cells */
+    border-bottom: 2px solid #380000;
   }
 
   tbody tr:first-child {
@@ -75,22 +71,7 @@
     border-top: 2px solid #380000;
   }
 
-  #home-btn{
-    margin-top: 10px;
-    cursor: pointer;
-  }
-
-  #home-btn:hover{
-    background-color: white;
-    color: black;
-  }
-
-  #new-race-btn{
-    margin-top: 10px;
-    cursor: pointer;
-  }
-
-  #new-race-btn:hover{
+  #close-btn:hover{
     background-color: white;
     color: black;
   }
