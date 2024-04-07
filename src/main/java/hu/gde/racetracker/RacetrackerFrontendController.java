@@ -63,7 +63,13 @@ public class RacetrackerFrontendController {
         model.addAttribute("race", race);
         List<RunnerEntity> runners = runnerRepository.findAll();
         model.addAttribute("runner", runners);
-        return "race_details"; // This is the name of your HTML template for displaying race details
+        model.addAttribute("selectedRunnerId", 0L);
+        return "race_details";
+    }
+
+    @PostMapping("/races/{raceId}/addRunner")
+    public String addRunnerToRace(@PathVariable Long raceId, @RequestParam Long selectedRunnerId) {
+        return "redirect:/raceDetails/" + raceId;
     }
 
     @GetMapping("/races")

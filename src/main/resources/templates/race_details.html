@@ -11,8 +11,8 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
+      <th>Runner ID</th>
+      <th>Runner Name</th>
       <th>Finish Time</th>
     </tr>
     </thead>
@@ -24,7 +24,26 @@
     </tr>
     </tbody>
   </table>
+  <select id="runnerSelection" th:field="${selectedRunnerId}">
+    <option th:each="runner : ${runners}" th:value="${runner.runnerId}">
+      [[${runner.runnerName}]] (ID: [[${runner.runnerId}]])
+    </option>
+  </select>
+  <button onclick="addRunnerToRace(${raceId})">Add Runner</button>
 </div>
+<script>
+  function addRunnerToRace(raceId) {
+    const selectedRunnerId = document.getElementById("runnerSelection").value;
+
+    fetch(`/races/<span class="math-inline">\{raceId\}/addRunner?selectedRunnerId\=</span>{selectedRunnerId}`, {
+      method: 'POST'
+    })
+            .then(response => response.json()) // Handle response (optional)
+            .catch(error => {
+              console.error('Error adding runner to race:', error);
+            });
+  }
+</script>
 </body>
 </html>
 

@@ -22,13 +22,25 @@
         <tr th:each="race : ${races}">
             <td th:text="${race.raceId}"></td>
             <td th:text="${race.raceName}"></td>
+            <script th:inline="javascript">
+                console.log('Race:', race);
+                console.log('Race ID:', race.raceId);
+            </script>
             <td th:text="${race.length}"></td>
             <td th:text="${race.avrgTime}"></td>
 
-            <td>
-                <button onclick="openRaceDetailsWindow('id')" class="btn btn-primary">View Details</button>
-            </td>
+            <script th:inline="javascript">
+                let currentRaceId = [[${race.raceId}]];  // Create a JavaScript variable directly
+                function openRaceDetailsWindow() {
+                    console.log('Race ID:', currentRaceId);
+                    let url = `raceDetails/${currentRaceId}`;
+                    window.open(url, "_blank");
+                }
+            </script>
 
+            <td>
+                <button onclick="openRaceDetailsWindow(currentRaceId)" class="btn btn-primary">View Details</button>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -46,15 +58,8 @@
     </form>
 
 </div>
+
 <script>
-    function openRaceDetailsWindow() {
-        console.log('Race ID:', raceId);
-        let url = "/raceDetails/" + raceId;
-        window.open(url, "_blank");
-
-    }
-
-
 
 </script>
 </body>

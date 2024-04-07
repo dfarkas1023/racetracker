@@ -41,6 +41,17 @@ public class RacetrackerController {
         return ResponseEntity.ok(race);
     }
 
+    @PostMapping("/races/{raceId}/addRunner")
+    public ResponseEntity<RaceEntity> addRunnerToRace(@PathVariable Long raceId, @RequestParam Long selectedRunnerId) {
+        RaceEntity race = raceRepository.findById(raceId).orElseThrow(() -> new RuntimeException("Race not found!"));
+        RunnerEntity runner = runnerRepository.findById(selectedRunnerId).orElseThrow(() -> new RuntimeException("Runner not found!"));
+
+        race.getRaceRunners().add(runner);
+        raceRepository.save(race);
+
+        return ResponseEntity.ok(race);
+    }
+
     @GetMapping("/getRaceRunners/{id}")
     public List<RunnerEntity> getRaceRunners(@PathVariable Long id){
         RaceEntity runner = raceRepository.findById(id).orElseThrow(() -> new RuntimeException("Runner not found!"));
