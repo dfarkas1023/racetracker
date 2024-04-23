@@ -27,18 +27,17 @@
 
 
             <script th:inline="javascript">
-                const id = document.getElementById(raceId);
-                function openRaceDetailsWindow() {
-                    let raceId = race.raceId;
-                    console.log('Race ID:', [${race.raceId}]);
-                    let url = `raceDetails/${raceId}`;
+                function openRaceDetailsWindow(raceId) {
+                    let raceElementId = event.target.parentElement.parentElement.querySelector('td:first-child').innerText;
+                    console.log('Race ID:', raceElementId);
+                    let url = `raceDetails/${raceElementId}`;
                     window.open(url, "_blank");
                 }
 
             </script>
 
             <td>
-                <button onclick="openRaceDetailsWindow([${getRaceId(id)}])" class="btn btn-primary">View Details</button>
+                <button onclick="openRaceDetailsWindow()" class="btn btn-primary">View Details</button>
             </td>
         </tr>
         </tbody>
