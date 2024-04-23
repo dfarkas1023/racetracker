@@ -5,7 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -38,6 +40,7 @@ public class RacetrackerController {
     @GetMapping("/raceDetails/{id}")
     public ResponseEntity<RaceEntity> getRaceDetails(@PathVariable Long id){
         RaceEntity race = raceRepository.findById(id).orElseThrow(() -> new RuntimeException("Race not found!"));
+        race.calculateAvgFinishTime();
         return ResponseEntity.ok(race);
     }
 
@@ -47,14 +50,28 @@ public class RacetrackerController {
         RunnerEntity runner = runnerRepository.findById(selectedRunnerId).orElseThrow(() -> new RuntimeException("Runner not found!"));
 
         race.getRaceRunners().add(runner);
+        race.calculateAvgFinishTime();
         raceRepository.save(race);
 
         return ResponseEntity.ok(race);
     }
 
     @GetMapping("/getRaceRunners/{id}")
-    public List<RunnerEntity> getRaceRunners(@PathVariable Long id){
-        RaceEntity runner = raceRepository.findById(id).orElseThrow(() -> new RuntimeException("Runner not found!"));
-        return new ArrayList<>(runner.getRaceRunners());
+    public List<ResultEntity> getRaceRunners(@PathVariable Long id) {
+        RaceEntity race = raceRepository.findById(id).orElseThrow(() -> new RuntimeException("Race not found!"));
+        Set<RunnerEntity> runners = race.getRaceRunners();
+
+        List<ResultEntity> resultList = new ArrayList<>(runners.size());
+        for (RunnerEntity runner : runners) {
+            long finishTimeInMinutes = runner.getFinishTimeInMinutes();
+            System.out.println("Runner " + runner.getRunnerName() + " - Finish Time in Minutes: " + finishTimeInMinutes);
+
+            resultList.add(new ResultEntity(runner, finishTimeInMinutes));
+            resultList.get(resultList.size() - 1).setRunnerName(runner.getRunnerName());
+        }
+
+        resultList.sort(Comparator.comparing(ResultEntity::getFinishTime).reversed());
+
+        return resultList;
     }
 }

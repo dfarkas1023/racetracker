@@ -22,24 +22,23 @@
         <tr th:each="race : ${races}">
             <td th:text="${race.raceId}"></td>
             <td th:text="${race.raceName}"></td>
-            <script th:inline="javascript">
-                console.log('Race:', race);
-                console.log('Race ID:', race.raceId);
-            </script>
             <td th:text="${race.length}"></td>
-            <td th:text="${race.avrgTime}"></td>
+            <td th:text="${race.avgFinishTime != null ? race.avgFinishTime : 'N/A'}"></td>
+
 
             <script th:inline="javascript">
-                let currentRaceId = [[${race.raceId}]];  // Create a JavaScript variable directly
+                const id = document.getElementById(raceId);
                 function openRaceDetailsWindow() {
-                    console.log('Race ID:', currentRaceId);
-                    let url = `raceDetails/${currentRaceId}`;
+                    let raceId = race.raceId;
+                    console.log('Race ID:', [${race.raceId}]);
+                    let url = `raceDetails/${raceId}`;
                     window.open(url, "_blank");
                 }
+
             </script>
 
             <td>
-                <button onclick="openRaceDetailsWindow(currentRaceId)" class="btn btn-primary">View Details</button>
+                <button onclick="openRaceDetailsWindow([${getRaceId(id)}])" class="btn btn-primary">View Details</button>
             </td>
         </tr>
         </tbody>
@@ -58,10 +57,6 @@
     </form>
 
 </div>
-
-<script>
-
-</script>
 </body>
 </html>
 
@@ -85,6 +80,7 @@
 
     .container{
         width: 80%;
+        max-width: 700px;
         margin: 10px;
         justify-content: center;
         align-content: center;
@@ -123,7 +119,7 @@
         cursor: pointer;
     }
 
-    #new-race-btn:hover{
+    .btn:hover{
         background-color: white;
         color: black;
     }

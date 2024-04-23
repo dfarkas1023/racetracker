@@ -13,7 +13,7 @@
     <tr>
       <th>Runner ID</th>
       <th>Runner Name</th>
-      <th>Finish Time</th>
+      <th>Finish Time (minutes)</th>
     </tr>
     </thead>
     <tbody>
@@ -24,26 +24,19 @@
     </tr>
     </tbody>
   </table>
-  <select id="runnerSelection" th:field="${selectedRunnerId}">
-    <option th:each="runner : ${runners}" th:value="${runner.runnerId}">
-      [[${runner.runnerName}]] (ID: [[${runner.runnerId}]])
-    </option>
-  </select>
-  <button onclick="addRunnerToRace(${raceId})">Add Runner</button>
-</div>
-<script>
-  function addRunnerToRace(raceId) {
-    const selectedRunnerId = document.getElementById("runnerSelection").value;
 
-    fetch(`/races/<span class="math-inline">\{raceId\}/addRunner?selectedRunnerId\=</span>{selectedRunnerId}`, {
-      method: 'POST'
-    })
-            .then(response => response.json()) // Handle response (optional)
-            .catch(error => {
-              console.error('Error adding runner to race:', error);
-            });
-  }
-</script>
+  <form th:action="@{/races/{raceId}/addRunner(raceId=${race.raceId})}" method="post">
+    <select id="runnerSelection" name="selectedRunnerId">
+      <option th:each="runner : ${availableRunners}" th:value="${runner.runnerId}">
+        [[${runner.runnerName}]] (ID: [[${runner.runnerId}]])
+      </option>
+    </select>
+
+    <input type="hidden" name="raceId" th:value="${race.raceId}">
+    <button class="btn btn-success" type="submit">Add Runner</button>
+  </form>
+</div>
+
 </body>
 </html>
 
@@ -81,7 +74,7 @@
   }
 
   tbody tr:first-child {
-    border-top: 2px solid #380000; /* Style the top border of the first row in the table body */
+    border-top: 2px solid #380000;
   }
 
 
@@ -90,7 +83,7 @@
     border-top: 2px solid #380000;
   }
 
-  #close-btn:hover{
+  .btn:hover{
     background-color: white;
     color: black;
   }

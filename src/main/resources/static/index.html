@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
 <head>
     <meta charset="UTF-8">
     <title>Race Tracker</title>
 </head>
 <body>
 <div class="container">
-    <h1>Welcome to Race Tracker!</h1>
-    <hr>
-    <p>On this webpage you'll be able to track both races and competitors, check race results and register yourself. </p>
-    <hr>
+    <img src="https://images.unsplash.com/photo-1590333748338-d629e4564ad9?q=80&w=1849&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image-runners">
+
+
+    <h1>Welcome to RaceTracker!</h1>
+    <div class="p-container">
+        <p>The Race Tracker application is dedicated to recording and filtering all necessary data
+            to keep track of running competitions and competitors. On this webpage you'll be able
+            to track both races and competitors, check race results and register new races, new runners.
+        </p>
+    </div>
+
 
     <div class="btn-container">
         <a href="/runners" class="btn btn-primary">View Runners</a>
@@ -27,25 +34,62 @@
     body {
         margin:0;
         min-height: 100vh;
+        font-family: Arial, sans-serif;
         display: flex;
+        justify-content: center;
         align-content: center;
-        background: linear-gradient(to bottom, #ff4343, #ff8e50);
+        background: linear-gradient(to top, #c8fffb, #50fff9);
+    }
+
+    img{
+        margin-top: 50px;
+        border-radius: 10px;
+        box-shadow: 0 3px 5px rgb(1, 28, 37, .5);
+        width: 500px;
+        height: auto;
+
     }
 
     .container{
-        width: 80%;
-        margin: 10px;
-        justify-content: center;
-        align-content: center;
+        top: 200px;
+        width: 500px;
+        padding: 10px;
+        text-align: center;
     }
+
     h1 {
-        color: #230909;
-        font-size: 24px;
+        color: #011c25;
+        font-size: 34px;
+        text-align: center;
+    }
+
+    .p-container{
+        width: 400px;
+        text-align: center;
+        margin-left: 50px;
+    }
+
+    .btn-container{
+        margin-top: 30px;
+        align-items: center;
+        justify-content: center;
     }
 
     .btn{
-        background: #230909;
+        margin: 5px;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        background: #011c25;
         border: none;
         outline: none;
+        transition: all .3s ease-in-out;
     }
+
+    .btn:hover{
+        background-color: white;
+        color: #011c25;
+    }
+
 </style>

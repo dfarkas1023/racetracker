@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
-
+import java.util.concurrent.TimeUnit;
 
 
 @Entity
@@ -26,6 +26,20 @@ public class RunnerEntity {
 
     private Long finishTime;
 
+    private long finishTimeInSecs;
+
+    public long getFinishTimeInSecs() {
+        return finishTimeInSecs;
+    }
+
+    public void setFinishTimeInSecs(long finishTimeInSecs) {
+        this.finishTimeInSecs = finishTimeInSecs;
+    }
+
+    public long getFinishTimeInMinutes() {
+        return TimeUnit.SECONDS.toMinutes(finishTimeInSecs);
+    }
+
     public Long getRunnerId(){return runnerId;}
 
     public void setRunnerId(Long runnerId) {this.runnerId = runnerId;}
@@ -46,9 +60,7 @@ public class RunnerEntity {
         this.finishTime = finishTime;
     }
 
-    private Gender runnerGender; // Change the type to Gender
-
-    // Getters and setters for runnerId, runnerName, and runnerAge
+    private Gender runnerGender;
 
     public Gender getRunnerGender() {
         return runnerGender;
