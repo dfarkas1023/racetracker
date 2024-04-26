@@ -99,6 +99,16 @@ public class RacetrackerController {
         return totalTime / resultList.size();
     }
 
+    @PostMapping("/races/{raceId}/updateRace")
+    public ResponseEntity<RaceEntity> updateRace(@PathVariable Long raceId, @RequestBody RaceEntity updatedRace) {
+        RaceEntity existingRace = raceRepository.findById(raceId).orElseThrow(() -> new RuntimeException("Race not found!"));
 
+        existingRace.setRaceName(updatedRace.getRaceName());
+        existingRace.setLength(updatedRace.getLength());
+
+        RaceEntity savedRace = raceRepository.save(existingRace);
+
+        return ResponseEntity.ok(savedRace);
+    }
 
 }

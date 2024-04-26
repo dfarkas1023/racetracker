@@ -43,6 +43,10 @@ public class RaceEntity {
 
     }
 
+    public void setAvrgTimeInMinutes(long avgTimeInMinutes) {
+        this.avrgTime = LocalTime.ofSecondOfDay(avgTimeInMinutes * 60);
+    }
+
     public Long getRaceId(){return raceId;}
 
     public void setRaceId(Long raceId){this.raceId = raceId;}
