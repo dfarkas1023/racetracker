@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Runners</title>
 </head>
 <body>
-<div class="container">
-    <h1>Runners</h1>
-    <table class="table table-striped">
+
+<div class="nav-container">
+    <nav>
+        <a class="nav" href="http://localhost:8082">Home</a>
+        <a class="nav" href="http://localhost:8082/runners">Runners</a>
+        <a class="nav" href="http://localhost:8082/races">Races</a>
+    </nav>
+
+</div>
+
+<div class="runners-container">
+    <h1 class="runners">Runners</h1>
+    <table class="runners-table table-striped">
         <thead>
         <tr>
             <th>ID</th>
@@ -36,13 +47,15 @@
     </table>
 
 <div class="form-container">
-    <h1 class="add-new-runner">Add new runner</h1>
+
+    <h1 class="add-new-runner">Register new runner</h1>
+
     <form action="/addRunner" method="post">
         <div class="label-container">
             <label for="runnerName">Name:</label>
-            <input type="text" id="runnerName" name="name" required>
+            <input type="text" id="runnerName" name="name" required minlength="2" maxlength="28">
             <label for="runnerAge">Age:</label>
-            <input type="number" id="runnerAge" name="age" required>
+            <input type="number" id="runnerAge" name="age" required min="12" max="120">
             <!--        <br>-->
             <!--        <label for="finishTime">Finish Time (minutes):</label>-->
             <!--        <input type="number" id="finishTime" name="finishTime" required>-->
@@ -61,45 +74,8 @@
 </div>
 
 </div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
-
-
-<style>
-    body {
-        margin:0;
-        min-height: 100vh;
-        display: flex;
-        align-content: center;
-        background: linear-gradient(to bottom, #ff4343, #ff8e50);
-    }
-
-    .container{
-        width: 80%;
-        margin: 10px;
-        justify-content: center;
-        align-content: center;
-    }
-    h1 {
-        color: #230909;
-        font-size: 24px;
-    }
-
-    .add-new-runner{
-        margin-top: 30px;
-        margin-bottom: 20px;
-    }
-
-    .btn{
-        background: #230909;
-        border: none;
-        outline: none;
-    }
-
-    .label-container{
-        width: 350px;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 15px;
-    }
-</style>

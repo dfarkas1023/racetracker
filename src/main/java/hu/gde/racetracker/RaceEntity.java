@@ -1,6 +1,5 @@
 package hu.gde.racetracker;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
@@ -28,7 +27,21 @@ public class RaceEntity {
 
     private LocalTime avrgTime;
 
+    private long averageTimeInMinutes;
+
+
+
+
     public LocalTime getAvrgTime(){return avrgTime;}
+
+    public void setAvrgTime(LocalTime avrgTime){
+        if(avrgTime != null) {
+            this.avrgTime = avrgTime;
+        } else {
+            System.out.println("Average time not available!");
+        }
+
+    }
 
     public Long getRaceId(){return raceId;}
 
@@ -52,35 +65,6 @@ public class RaceEntity {
 
     public RaceEntity(){
         this.raceRunners = new HashSet<>();
-    }
-
-    private LocalTime avgFinishTime;
-
-    public LocalTime getAvgFinishTime() {
-        return avgFinishTime;
-    }
-
-    public void setAvgFinishTime(LocalTime avgFinishTime) {
-        this.avgFinishTime = avgFinishTime;
-    }
-
-    @PostConstruct
-    public void calculateAvgFinishTime() {
-        if (this.raceRunners.isEmpty()) {
-            this.avgFinishTime = null;
-            return;
-        }
-
-        long totalTimeInMinutes = 0;
-        for (RunnerEntity runner : this.raceRunners) {
-            totalTimeInMinutes += runner.getFinishTimeInMinutes();
-        }
-
-        int numRunners = this.raceRunners.size();
-
-        long averageMinutes = totalTimeInMinutes / numRunners;
-
-        this.avgFinishTime = LocalTime.of((int) averageMinutes, 0);
     }
 
 }

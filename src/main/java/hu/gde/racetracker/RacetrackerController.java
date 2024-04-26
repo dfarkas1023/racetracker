@@ -28,6 +28,7 @@ public class RacetrackerController {
 
     @GetMapping("/getRaces")
     public List<RaceEntity> getRaces(){return raceRepository.findAll();}
+
     @PostMapping("/addRunner")
     public RunnerEntity addRunner(@RequestBody RunnerEntity runner) {return runnerRepository.save(runner);}
 
@@ -40,7 +41,6 @@ public class RacetrackerController {
     @GetMapping("/raceDetails/{id}")
     public ResponseEntity<RaceEntity> getRaceDetails(@PathVariable Long id){
         RaceEntity race = raceRepository.findById(id).orElseThrow(() -> new RuntimeException("Race not found!"));
-        race.calculateAvgFinishTime();
         return ResponseEntity.ok(race);
     }
 
@@ -50,7 +50,6 @@ public class RacetrackerController {
         RunnerEntity runner = runnerRepository.findById(selectedRunnerId).orElseThrow(() -> new RuntimeException("Runner not found!"));
 
         race.getRaceRunners().add(runner);
-        race.calculateAvgFinishTime();
         raceRepository.save(race);
 
         return ResponseEntity.ok(race);
@@ -63,15 +62,43 @@ public class RacetrackerController {
 
         List<ResultEntity> resultList = new ArrayList<>(runners.size());
         for (RunnerEntity runner : runners) {
-            long finishTimeInMinutes = runner.getFinishTimeInMinutes();
-            System.out.println("Runner " + runner.getRunnerName() + " - Finish Time in Minutes: " + finishTimeInMinutes);
+            long finishTime = runner.getFinishTime();
+            System.out.println("Runner " + runner.getRunnerName() + " - Finish Time in Minutes: " + finishTime);
 
-            resultList.add(new ResultEntity(runner, finishTimeInMinutes));
+            resultList.add(new ResultEntity(runner, finishTime));
             resultList.get(resultList.size() - 1).setRunnerName(runner.getRunnerName());
         }
 
-        resultList.sort(Comparator.comparing(ResultEntity::getFinishTime).reversed());
+        for (ResultEntity result : resultList) {
+            System.out.println("Result: Runner Name - " + result.getRunner().getRunnerName() + ", Finish Time (minutes): " + result.getFinishTime());
+        }
+
+        resultList.sort(Comparator.comparing(ResultEntity::getFinishTime));
 
         return resultList;
     }
+
+    @GetMapping("/getAverageTime/{raceId}")
+    public Long getAverageTime(@PathVariable Long raceId) {
+        RaceEntity race = raceRepository.findById(raceId).orElseThrow(
+                () -> new RuntimeException("Race not found!"));
+        List<ResultEntity> resultList = new ArrayList<>();
+        for (RunnerEntity runner : race.getRaceRunners()) {
+            resultList.add(new ResultEntity(runner, runner.getFinishTime()));
+        }
+
+        long totalTime = 0;
+        for (ResultEntity result : resultList) {
+            totalTime += result.getFinishTime();
+        }
+
+        if (resultList.isEmpty()) {
+            return null;
+        }
+
+        return totalTime / resultList.size();
+    }
+
+
+
 }

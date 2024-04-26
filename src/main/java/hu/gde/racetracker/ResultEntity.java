@@ -1,7 +1,6 @@
 package hu.gde.racetracker;
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 public class ResultEntity {
@@ -17,7 +16,8 @@ public class ResultEntity {
     private Long finishTime;
 
     private String runnerName;
-    public ResultEntity(){
+
+    public ResultEntity() {
 
     }
 
@@ -36,9 +36,20 @@ public class ResultEntity {
     }
 
 
-    public String getRunnerName() {return runnerName;}
-    public void setRunnerName(String runnerName){this.runnerName = runnerName;}
+    public String getRunnerName() {
+        return runnerName;
+    }
 
-    public Long getFinishTime(){return finishTime;}
-    public void setFinishTime(Long finishTime) {this.finishTime = finishTime;}
+    public void setRunnerName(String runnerName) {
+        this.runnerName = runnerName;
+    }
+
+    public Long getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(Long finishTime) {
+        this.finishTime = finishTime;
+    }
+
 }

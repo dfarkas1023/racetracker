@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Race Details</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="container">
-  <h1>Race Details</h1>
-  <table class="table table-striped">
+
+<div class="nav-container">
+  <nav>
+    <a class="nav" href="http://localhost:8082">Home</a>
+    <a class="nav" href="http://localhost:8082/runners">Runners</a>
+    <a class="nav" href="http://localhost:8082/races">Races</a>
+  </nav>
+
+</div>
+
+
+
+<div class="races-container">
+
+  <h1 class="race-details">Race Details</h1>
+
+  <table class="races-table table-striped">
     <thead>
     <tr>
       <th>Runner ID</th>
@@ -25,7 +40,10 @@
     </tbody>
   </table>
 
-  <form th:action="@{/races/{raceId}/addRunner(raceId=${race.raceId})}" method="post">
+  <h1 class="new-runner-from-list">Add Runner From List</h1>
+
+  <form class="add-runner-form" th:action="@{/races/{raceId}/addRunner(raceId=${race.raceId})}" method="post">
+
     <select id="runnerSelection" name="selectedRunnerId">
       <option th:each="runner : ${availableRunners}" th:value="${runner.runnerId}">
         [[${runner.runnerName}]] (ID: [[${runner.runnerId}]])
@@ -35,62 +53,34 @@
     <input type="hidden" name="raceId" th:value="${race.raceId}">
     <button class="btn btn-success" type="submit">Add Runner</button>
   </form>
+
+  <h1 class="register-new-runner">Register new runner</h1>
+
+  <form th:action="@{/races/{raceId}/addRunnerAndCreate(raceId=${race.raceId})}" method="post">
+
+    <div class="label-container">
+      <label for="runnerName">Name:</label>
+      <input type="text" id="runnerName" name="name" required minlength="2" maxlength="28">
+      <label for="runnerAge">Age:</label>
+      <input type="number" id="runnerAge" name="age" required min="12" max="120">
+      <label for="finishTime">Finish Time (minutes):</label>
+      <input type="number" id="finishTime" name="finishTime" required min="10" max="1000">
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+        <option value="OTHER">Other</option>
+      </select>
+    </div>
+
+    <input type="hidden" name="raceId" th:value="${race.raceId}">
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a href="http://localhost:8082" class="btn btn-primary">Return Home</a>
+  </form>
 </div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
-
-
-<style>
-  body {
-    margin:0;
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    align-content: center;
-    background: linear-gradient(to bottom, #ff4343, #ff8e50);
-  }
-
-  table{
-    background-color: rgba(52, 0, 0, 0.2);
-    border-radius: 5px;
-    border-collapse: separate;
-    border-spacing: 0;
-  }
-
-  .container{
-    width: 80%;
-    margin: 10px;
-    justify-content: center;
-    align-content: center;
-  }
-  h1 {
-    color: #230909;
-    font-size: 24px;
-  }
-
-  thead th {
-    border-bottom: 2px solid #380000;
-  }
-
-  tbody tr:first-child {
-    border-top: 2px solid #380000;
-  }
-
-
-  tbody tr {
-    border-bottom: 2px solid #380000;
-    border-top: 2px solid #380000;
-  }
-
-  .btn:hover{
-    background-color: white;
-    color: black;
-  }
-
-  .btn{
-    background: #230909;
-    border: none;
-    outline: none;
-  }
-</style>

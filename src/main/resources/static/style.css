@@ -1,0 +1,293 @@
+/*  All */
+
+body {
+    margin:0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    background: linear-gradient(to top, #c8fffb, #50fff9);
+}
+
+img{
+    margin-outside: 10px;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgb(1, 28, 37, .5);
+    width: 500px;
+    height: auto;
+}
+
+
+.btn-container{
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn{
+    font-size: 16px;
+    margin: 5px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #011c25;
+    border: none;
+    outline: none;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+
+.btn:hover{
+    background-color: white;
+    color: #011c25;
+}
+
+.nav-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #011c25;
+    text-align: center;
+}
+
+.nav-container nav{
+    padding: 10px 20px;
+}
+
+.nav-container nav a{
+    margin: 0 20px;
+    color: aliceblue;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .3s ease-in;
+}
+.nav-container nav a:hover{
+    color: #729fa5;
+}
+
+/* Index */
+
+.index-container{
+    margin-top: 30px;
+    top: 200px;
+    width: 500px;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+.index-h1 {
+    color: #011c25;
+    font-size: 34px;
+    text-align: center;
+}
+
+
+
+.p-container{
+    width: 400px;
+    text-align: center;
+    margin-left: 50px;
+}
+
+
+/* Races */
+
+.races{
+    text-align: center;
+}
+
+.races-container{
+    min-width: 400px;
+    max-width: 700px;
+    margin: 50px 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+.races-table{
+    background-color: rgba(52, 0, 0, 0.2);
+    border-radius: 5px;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: center;
+    justify-content: center;
+}
+
+
+
+/* Runners */
+
+.runners{
+    text-align: center;
+}
+
+.add-new-runner{
+    margin-top: 50px;
+    font-size: 26px;
+}
+
+
+.runners-table{
+    background-color: rgba(52, 0, 0, 0.2);
+    border-radius: 5px;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: center;
+    justify-content: center;
+}
+
+.runners-container{
+    min-width: 400px;
+    max-width: 700px;
+    margin-top: 70px;
+    margin-outside: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+
+
+thead th {
+    padding: 10px 15px;
+}
+
+tbody tr:first-child {
+    border-top: 2px solid #011c25;
+}
+
+tbody td {
+    border-top: 2px solid rgba(1, 28, 37, .5);
+    padding: 10px 15px;
+}
+
+
+
+/* Race details */
+
+.race-details{
+    margin-bottom: 50px;
+}
+
+.register-new-runner{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.new-runner-from-list{
+    font-size: 26px;
+    margin-top: 40px;
+}
+
+.label-container{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-container{
+    min-width: 400px;
+    margin-left: 15%;
+}
+form{
+    margin-bottom: 50px;
+}
+.form-group{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-runner-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group label{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.label-container label{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input{
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+input::placeholder{
+    font-size: 16px;
+}
+
+.label-container select{
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.label-container option{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: aliceblue;
+}
+
+select::placeholder{
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+
+
+
+#runnerSelection{
+    text-align: center;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 550px) {
+    img{
+        width: 400px;
+    }
+
+    .runners-table{
+        margin-left: 0;
+    }
+
+    .form-container{
+        margin-left: 10%;
+    }
+    
+}
