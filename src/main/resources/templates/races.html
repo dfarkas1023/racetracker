@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Races</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
 <div class="nav-container">
     <nav>
+        <i class="fa-solid fa-person-running"></i>
         <a class="nav" href="http://localhost:8082">Home</a>
         <a class="nav" href="http://localhost:8082/runners">Runners</a>
         <a class="nav" href="http://localhost:8082/races">Races</a>
@@ -59,7 +61,7 @@
         </tbody>
     </table>
 
-    <form class="new-race-form" action="/newRace" method="post">
+    <form id="new-race-form" class="new-race-form" action="/newRace" method="post">
         <div class="form-group">
             <label for="raceName">Race name:</label>
             <input type="text" class="form-control" id="raceName" name="name" placeholder="Enter race name" autocomplete="off" required pattern="[A-Za-z\s]+" minlength="6" maxlength="100">
@@ -73,6 +75,12 @@
     </form>
 
 </div>
+
+
+<footer class="footer">
+    <p>Made with Springboot by VMware Tanzu | <a href="https://spring.io">https://spring.io</a> </p>
+</footer>
+
 
 <script src="script.js" defer></script>
 

@@ -5,21 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Race Details</title>
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
 <div class="nav-container">
-  <nav>
-    <a class="nav" href="http://localhost:8082">Home</a>
-    <a class="nav" href="http://localhost:8082/runners">Runners</a>
-    <a class="nav" href="http://localhost:8082/races">Races</a>
-  </nav>
-
+    <nav>
+        <i class="fa-solid fa-person-running"></i>
+        <a class="nav" href="http://localhost:8082">Home</a>
+        <a class="nav" href="http://localhost:8082/runners">Runners</a>
+        <a class="nav" href="http://localhost:8082/races">Races</a>
+    </nav>
 </div>
 
 
-
-<div class="races-container">
+<div id="race-details-container" class="races-container">
 
   <h1 class="race-details">Race Details</h1>
 
@@ -32,7 +32,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="runner : ${runners}">
+    <tr th:each="runner : ${sortedRunners}">
       <td th:text="${runner.runnerId}"></td>
       <td th:text="${runner.runnerName}"></td>
       <td th:text="${runner.finishTime}"></td>
@@ -42,21 +42,21 @@
 
   <h1 class="new-runner-from-list">Add Runner From List</h1>
 
-  <form class="add-runner-form" th:action="@{/races/{raceId}/addRunner(raceId=${race.raceId})}" method="post">
+  <form id="add-runner-form-list" class="add-runner-form" th:action="@{/races/{raceId}/addRunner(raceId=${race.raceId})}" method="post">
 
     <select id="runnerSelection" name="selectedRunnerId">
-      <option th:each="runner : ${availableRunners}" th:value="${runner.runnerId}">
+      <option id="runnerNameList" th:each="runner : ${availableRunners}" th:value="${runner.runnerId}">
         [[${runner.runnerName}]] (ID: [[${runner.runnerId}]])
       </option>
     </select>
 
     <input type="hidden" name="raceId" th:value="${race.raceId}">
-    <button class="btn btn-success" type="submit">Add Runner</button>
+    <button id="add-runner" class="btn btn-success" type="submit">Add Runner</button>
   </form>
 
   <h1 class="register-new-runner">Register new runner</h1>
 
-  <form th:action="@{/races/{raceId}/addRunnerAndCreate(raceId=${race.raceId})}" method="post">
+  <form id="new-runner-form" th:action="@{/races/{raceId}/addRunnerAndCreate(raceId=${race.raceId})}" method="post">
 
     <div class="label-container">
       <label for="runnerName">Name:</label>
@@ -80,7 +80,11 @@
 </div>
 
 
-<script src="script.js"></script>
 
+<footer class="footer">
+  <p>Made with Springboot by VMware Tanzu | <a href="https://spring.io">https://spring.io</a> </p>
+</footer>
+
+<script src="/script.js" defer></script>
 </body>
 </html>

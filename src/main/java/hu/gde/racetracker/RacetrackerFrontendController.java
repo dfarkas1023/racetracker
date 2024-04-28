@@ -33,7 +33,7 @@ public class RacetrackerFrontendController {
     @GetMapping("/runners")
     public String getRunners(Model model) {
         List<RunnerEntity> runners = runnerRepository.findAll();
-        runners.sort(Comparator.comparing(RunnerEntity::getRunnerId));
+        runners.sort(Comparator.comparing(RunnerEntity::getFinishTime));
         model.addAttribute("runners", runners);
         return "runners";
     }
@@ -54,6 +54,7 @@ public class RacetrackerFrontendController {
         ResultEntity result = new ResultEntity(runner, randomMinutes);
         runnerRepository.save(runner);
         resultRepository.save(result);
+
         return "redirect:/runners";
     }
 
@@ -81,9 +82,9 @@ public class RacetrackerFrontendController {
                 .orElseThrow(() -> new RuntimeException("Race not found!"));
         model.addAttribute("race", race);
 
-        List<RunnerEntity> allRunners = runnerRepository.findAll();
-        Collections.sort(allRunners, Comparator.comparing(RunnerEntity::getRunnerId));
 
+        List<RunnerEntity> allRunners = runnerRepository.findAll();
+        Collections.sort(allRunners, Comparator.comparing(RunnerEntity::getFinishTime));
 
         List<RunnerEntity> availableRunners = new ArrayList<>();
         model.addAttribute("availableRunners", availableRunners);
@@ -91,6 +92,13 @@ public class RacetrackerFrontendController {
         if (race.getRaceRunners().isEmpty()) {
             model.addAttribute("averageTimeMessage", "Average Time: Not Available (No Runners Added Yet)");
         }
+
+
+        List<RunnerEntity> raceRunners = new ArrayList<>(race.getRaceRunners());
+        model.addAttribute("runners", raceRunners);
+        List<RunnerEntity> sortedRaceRunners = new ArrayList<>(raceRunners);
+        sortedRaceRunners.sort(Comparator.comparing(RunnerEntity::getFinishTime));
+        model.addAttribute("sortedRunners", sortedRaceRunners);
 
         for (RunnerEntity runner : allRunners) {
             boolean alreadyInRace = false;

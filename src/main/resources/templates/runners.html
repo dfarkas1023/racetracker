@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Runners</title>
@@ -10,11 +11,11 @@
 
 <div class="nav-container">
     <nav>
+        <i class="fa-solid fa-person-running"></i>
         <a class="nav" href="http://localhost:8082">Home</a>
         <a class="nav" href="http://localhost:8082/runners">Runners</a>
         <a class="nav" href="http://localhost:8082/races">Races</a>
     </nav>
-
 </div>
 
 <div class="runners-container">
@@ -50,7 +51,7 @@
 
     <h1 class="add-new-runner">Register new runner</h1>
 
-    <form action="/addRunner" method="post">
+    <form id="new-runner-form" action="/addRunner" method="post">
         <div class="label-container">
             <label for="runnerName">Name:</label>
             <input type="text" id="runnerName" name="name" required minlength="2" maxlength="28">
@@ -67,7 +68,9 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-success">Submit</button>
+
+        <button id="submit-btn" type="submit" class="btn btn-success">Submit</button>
+
         <a href="http://localhost:8082" class="btn btn-primary">Return Home</a>
     </form>
 
@@ -75,7 +78,12 @@
 
 </div>
 
-<script src="script.js"></script>
+<footer class="footer">
+    <p>Made with Springboot by VMware Tanzu | <a href="https://spring.io">https://spring.io</a> </p>
+</footer>
+
+
+<script src="script.js" defer></script>
 
 </body>
 </html>
