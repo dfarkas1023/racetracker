@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "f98158fa-f0aa-4d90-b3c4-8845e777b087",
+		"name": "racetrackertest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33877436"
+	},
+	"item": [
+		{
+			"name": "getRunners",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/getRunners",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"getRunners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addRunner",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "runnerName",
+						"value": "John Doe",
+						"type": "text"
+					},
+					{
+						"key": "runnerAge",
+						"value": "25",
+						"type": "text"
+					},
+					{
+						"key": "runnerGender",
+						"value": "MALE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"runnerName\": \"John Doe\",\r\n  \"runnerAge\": 25,\r\n  \"runnerGender\": \"MALE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/addRunner",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"addRunner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRaceRunners",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/getRaceRunners/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"getRaceRunners",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRaces",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/getRaces",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"getRaces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/races/{raceId}/addRunner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"selectedRunnerId\": 4,\r\n    \"raceId\": 1,\r\n    \"runnerId\": 4,\r\n    \"runnerName\": \"Pam\",\r\n    \"finishTime\": 101    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/races/1/addRunner?selectedRunnerId=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"races",
+						"1",
+						"addRunner"
+					],
+					"query": [
+						{
+							"key": "selectedRunnerId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAverageTime",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/getAverageTime/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"getAverageTime",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateRace",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"raceName\": \"Updated Race Name\",\r\n  \"length\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/races/1/updateRace",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"races",
+						"1",
+						"updateRace"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8082/api/raceDetails/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/raceDetails/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"raceDetails",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
